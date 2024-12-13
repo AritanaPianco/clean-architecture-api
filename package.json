@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "prepare": "husky",
-    "test:staged": "jest --passWithNoTests"
+    "test:staged": "jest --passWithNoTests",
+    "lint:fix": "eslint 'src/**' --fix"
   },
   "keywords": [],
   "author": "",
