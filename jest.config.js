@@ -14,7 +14,7 @@ module.exports = {
   transform: {
     '.+\\.ts$': 'ts-jest'
   },
-  testEnvironment: 'jest-environment-node'
+  preset: '@shelf/jest-mongodb'
 
 }
 // export default config
