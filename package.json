@@ -12,7 +12,8 @@
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
     "prepare": "husky",
-    "lint:fix": "eslint 'src/**' --fix"
+    "lint:fix": "eslint 'src/**' --fix",
+    "fix": "eslint 'src/**' --fix"
   },
   "keywords": [],
   "author": "",
