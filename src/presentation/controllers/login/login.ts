@@ -15,13 +15,14 @@ export class LoginController implements Controller {
       statusCode: 200,
       body: null
     }
-    if (!httpRequest.body.email) {
+    const { email, password } = httpRequest.body
+    if (!email) {
       response = await new Promise(resolve => resolve(badRequest(new MissingParamError('email'))))
     }
-    if (!httpRequest.body.password) {
+    if (!password) {
       response = await new Promise(resolve => resolve(badRequest(new MissingParamError('password'))))
     }
-    const isValid = this.emailValidator.isValid(httpRequest.body.email)
+    const isValid = this.emailValidator.isValid(email)
     if (!isValid) {
       response = await new Promise(resolve => resolve(badRequest(new InvalidParamError('email'))))
     }
