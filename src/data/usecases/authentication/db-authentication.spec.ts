@@ -1,10 +1,12 @@
-import { type AccountModel } from '../add-account/db-add-account-protocols'
-import { type LoadAccountByEmailRepository } from '../../protocols/db/load-account-by-email-repository'
-import { type HashComparer } from '../../protocols/criptography/hash-comparer'
-import { type TokenGenerator } from '../../protocols/criptography/token-generator'
-import { type UpdateAccessTokenRepository } from '../../protocols/db/update-access-token-repositpry'
 import { DbAuthentication } from './db-authentication'
-import { type AuthenticationModel } from '../../../domain/usecases/authentication'
+import {
+  type AccountModel,
+  type LoadAccountByEmailRepository,
+  type HashComparer,
+  type TokenGenerator,
+  type UpdateAccessTokenRepository,
+  type AuthenticationModel
+} from './db-authentication-protocols'
 
 const makeFakeAccount = (): AccountModel => ({
   id: 'any_id',
@@ -143,5 +145,11 @@ describe('DbAuthentication UseCase', () => {
     const updateStub = jest.spyOn(updateAccessTokenRepositoryStub, 'update')
     await sut.auth(makeFakeAuthenticationModel())
     expect(updateStub).toHaveBeenCalledWith('any_id', 'any_token')
+  })
+  test('should throw if UpdateAccessTokenRepository thows', async () => {
+    const { sut, updateAccessTokenRepositoryStub } = makeSut()
+    jest.spyOn(updateAccessTokenRepositoryStub, 'update').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    const promise = sut.auth(makeFakeAuthenticationModel())
+    await expect(promise).rejects.toThrow()
   })
 })
