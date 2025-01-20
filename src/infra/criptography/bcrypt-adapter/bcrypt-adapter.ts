@@ -1,6 +1,6 @@
 // implementação do protocolo Hasher e HasherCompare
-import { type HashComparer } from '../../data/protocols/criptography/hash-comparer'
-import { type Hasher } from '../../data/protocols/criptography/hasher'
+import { type HashComparer } from '../../../data/protocols/criptography/hash-comparer'
+import { type Hasher } from '../../../data/protocols/criptography/hasher'
 import bcrypt from 'bcrypt'
 
 export class BcryptAdapter implements Hasher, HashComparer {
