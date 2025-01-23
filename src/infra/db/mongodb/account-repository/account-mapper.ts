@@ -1,10 +1,11 @@
 import { type AccountModel } from '../../../../domain/models/account'
-import { type AddAccountModel } from '../../../../domain/usecases/add-account'
 
-export const map = (result: any, accountData: AddAccountModel): AccountModel => {
+export const map = (result: any): AccountModel => {
   const account = {
-    id: result.insertedId.toString(),
-    ...accountData
+    id: result._id,
+    name: result.name,
+    email: result.email,
+    password: result.password
   }
   return account
 }
