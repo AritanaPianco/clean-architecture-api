@@ -48,5 +48,14 @@ describe('Login Routes', () => {
         })
         .expect(200)
     })
+    test('should return 401 on login', async () => {
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      await request(app)
+        .post('/api/login').send({
+          email: 'ari@gmail.com',
+          password: '123'
+        })
+        .expect(401)
+    })
   })
 })
