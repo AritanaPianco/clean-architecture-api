@@ -16,7 +16,6 @@
     "test:integration": "npm test -- -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
-    "prepare": "husky",
     "lint:fix": "eslint 'src/**' --fix",
     "fix": "eslint 'src/**' --fix"
   },
