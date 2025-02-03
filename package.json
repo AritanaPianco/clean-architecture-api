@@ -12,7 +12,7 @@
     "dev": "sucrase-node src/main/server.ts",
     "test": "jest --passWithNoTests",
     "test:verbose": "jest --passWithNoTests",
-    "test:unit": "npm test -- -c jest-unit-config.js",
+    "test:unit": "npm test -- -c jest-unit-config.js --no-coverage",
     "test:integration": "npm test -- -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
