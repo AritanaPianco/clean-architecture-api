@@ -18,7 +18,7 @@ describe('Surveys Routes', () => {
     await surveyCollection.deleteMany({})
   })
 
-  describe('POST /surveys', () => {
+  describe('POST /survey', () => {
     test('should return 204 on add survey', async () => {
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       await request(app)
