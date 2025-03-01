@@ -54,4 +54,10 @@ describe('LoadSurveys Controller', () => {
     await sut.handle({})
     expect(loadSpy).toHaveBeenCalled()
   })
+  test('should return 200 on success', async () => {
+    const { sut } = makeSut()
+    const response = await sut.handle({})
+    expect(response.statusCode).toBe(200)
+    expect(response.body).toEqual(makeFakeSurveys())
+  })
 })
