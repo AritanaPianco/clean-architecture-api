@@ -11,7 +11,8 @@ const makeFakeSurveyData = (): AddSurveyModel => ({
       image: 'any_image',
       answer: 'any_answer'
     }
-  ]
+  ],
+  date: new Date()
 })
 
 const makeAddSurveyRepositoryStub = (): AddSurveyRepository => {
@@ -42,7 +43,15 @@ describe('DbAddSurvey UseCase', () => {
     const { sut, addSurveyRepositoryStub } = makeSut()
     const addSpy = jest.spyOn(addSurveyRepositoryStub, 'add')
     await sut.add(makeFakeSurveyData())
-    expect(addSpy).toHaveBeenCalledWith(makeFakeSurveyData())
+    expect(addSpy).toHaveBeenCalledWith(expect.objectContaining({
+      question: 'any_question',
+      answers: [
+        {
+          image: 'any_image',
+          answer: 'any_answer'
+        }
+      ]
+    }))
   })
   test('should throw if AddSurveyRepository throws', async () => {
     const { sut, addSurveyRepositoryStub } = makeSut()

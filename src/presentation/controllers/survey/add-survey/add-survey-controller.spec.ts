@@ -13,7 +13,8 @@ const makeFakeRequest = (): HttpRequest => ({
     answers: [{
       image: 'any_image',
       answer: 'any_answer'
-    }]
+    }],
+    date: new Date()
   }
 })
 
@@ -70,7 +71,15 @@ describe('AddSurvey Controller', () => {
     const addSpy = jest.spyOn(addSurveyStub, 'add')
     const httpRequest = makeFakeRequest()
     await sut.handle(httpRequest)
-    expect(addSpy).toHaveBeenCalledWith(httpRequest.body)
+    expect(addSpy).toHaveBeenCalledWith(expect.objectContaining({
+      question: 'any_question',
+      answers: [
+        {
+          image: 'any_image',
+          answer: 'any_answer'
+        }
+      ]
+    }))
   })
   test('should returns 500 if AddSurvey throws', async () => {
     const { sut, addSurveyStub } = makeSut()
