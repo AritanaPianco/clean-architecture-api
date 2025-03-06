@@ -1,4 +1,4 @@
-import { badRequest, serverError, unauthorized, ok } from '../../helpers/http/http-helper'
+import { badRequest, serverError, unauthorized, ok } from '@/presentation/helpers/http/http-helper'
 import { MissingParamError } from '../../errors'
 import { LoginController } from './login-controller'
 import { type HttpRequest, type Authentication, type Validation, type AuthenticationModel } from './login-controller-protocols'

@@ -6,9 +6,12 @@
   "engines": {
     "node": "20.x"
   },
+  "_moduleAliases": {
+    "@": "dist"
+  },
   "scripts": {
     "start": "npx nodemon -L --watch ./dist ./dist/main/server.js",
-    "build": "tsc",
+    "build": "tsc -p tsconfig-build.json",
     "dev": "sucrase-node src/main/server.ts",
     "test": "jest --passWithNoTests",
     "test:verbose": "jest --passWithNoTests",
@@ -26,6 +29,7 @@
     "bcrypt": "^5.1.1",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
     "mongodb": "^3.5.1",
     "nodemon": "^3.1.9",
     "validator": "^13.12.0"
