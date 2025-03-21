@@ -35,7 +35,7 @@ describe('Login Routes', () => {
   describe('POST /login', () => {
     test('should return 200 on login', async () => {
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      const password = await hash('123', 12)
+      const password = await hash('123', 8)
       await accountCollection.insertOne({
         name: 'Ari',
         email: 'ari@gmail.com',

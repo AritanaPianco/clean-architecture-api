@@ -5,7 +5,7 @@ import { type UpdateAccessTokenRepository } from '../../../../data/protocols/db/
 import { type AccountModel } from '../../../../domain/models/account'
 import { type AddAccountModel } from '../../../../domain/usecases/add-account'
 import { MongoHelper } from '../helpers/mongo-helper'
-import { map } from './account-mapper'
+// import { map } from './account-mapper'
 
 export class AccountMongoRepository implements
      AddAccountRepository,
@@ -15,7 +15,7 @@ export class AccountMongoRepository implements
   async add (accountData: AddAccountModel): Promise<AccountModel> {
     const accountCollection = await MongoHelper.getCollection('accounts')
     const result = await accountCollection.insertOne(accountData)
-    return map(result.ops[0])
+    return MongoHelper.map(result.ops[0])
   }
 
   async loadByEmail (email: string): Promise<AccountModel | null> {
@@ -24,7 +24,7 @@ export class AccountMongoRepository implements
     if (!account) {
       return null
     }
-    return map(account)
+    return MongoHelper.map(account)
   }
 
   async loadByToken (token: string, role?: string): Promise<AccountModel | null> {
@@ -43,7 +43,7 @@ export class AccountMongoRepository implements
     if (!account) {
       return null
     }
-    return map(account)
+    return MongoHelper.map(account)
   }
 
   async updateAccessToken (id: string, token: string): Promise<void> {
